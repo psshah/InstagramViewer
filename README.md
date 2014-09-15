@@ -5,7 +5,7 @@ Time spent: 10 hours spent in total
 Completed user stories:
 
  Required: User can view most popular photos including username of who posted it and caption
- Optional: User can view the like count for each photograph 
+ Optional: User can view the like count for each photograph. 
  Optional: Added support for pull-to-refresh using third party library. 
 
 Notes:
