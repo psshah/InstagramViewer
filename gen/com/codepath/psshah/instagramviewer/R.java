@@ -18,36 +18,48 @@ public final class R {
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int heart=0x7f020000;
         public static final int ic_launcher=0x7f020001;
+        public static final int ptr_pulltorefresh_arrow=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f080005;
+        public static final int action_settings=0x7f08000b;
         public static final int ivLikes=0x7f080004;
         public static final int ivPhoto=0x7f080001;
         public static final int lvPhotos=0x7f080000;
+        public static final int ptr_id_header=0x7f080005;
+        public static final int ptr_id_image=0x7f080006;
+        public static final int ptr_id_last_updated=0x7f08000a;
+        public static final int ptr_id_spinner=0x7f080007;
+        public static final int ptr_id_text=0x7f080009;
+        public static final int ptr_id_textwrapper=0x7f080008;
         public static final int tvCaption=0x7f080002;
         public static final int tvLikes=0x7f080003;
     }
     public static final class layout {
         public static final int activity_photos=0x7f030000;
         public static final int item_photo=0x7f030001;
+        public static final int ptr_header=0x7f030002;
     }
     public static final class menu {
         public static final int photos=0x7f070000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050002;
-        public static final int app_name=0x7f050000;
-        public static final int caption_default_text=0x7f050004;
-        public static final int hello_world=0x7f050001;
-        public static final int like_count_default=0x7f050006;
-        public static final int popular_photos_caption=0x7f050003;
-        public static final int user_default_text=0x7f050005;
+        public static final int action_settings=0x7f050006;
+        public static final int app_name=0x7f050004;
+        public static final int caption_default_text=0x7f050008;
+        public static final int hello_world=0x7f050005;
+        public static final int like_count_default=0x7f05000a;
+        public static final int popular_photos_caption=0x7f050007;
+        public static final int ptr_last_updated=0x7f050003;
+        public static final int ptr_pull_to_refresh=0x7f050000;
+        public static final int ptr_refreshing=0x7f050002;
+        public static final int ptr_release_to_refresh=0x7f050001;
+        public static final int user_default_text=0x7f050009;
     }
     public static final class style {
         /** 
@@ -71,10 +83,17 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f040007;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f040008;
+        public static final int ptr_arrow=0x7f040002;
+        public static final int ptr_header=0x7f040001;
+        public static final int ptr_headerContainer=0x7f040000;
+        public static final int ptr_last_updated=0x7f040006;
+        public static final int ptr_spinner=0x7f040003;
+        public static final int ptr_text=0x7f040005;
+        public static final int ptr_textwrapper=0x7f040004;
     }
 }

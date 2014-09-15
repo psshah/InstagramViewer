@@ -12,21 +12,37 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
+
+import eu.erikw.PullToRefreshListView;
+import eu.erikw.PullToRefreshListView.OnRefreshListener;
 
 public class PhotosActivity extends Activity {
 	private static final String CLIENT_ID = "2095ae2e12324605aaa0779590174716";
 	private ArrayList<InstagramPhoto> photos;
 	private InstagramPhotosAdapter aphotos;
+	private PullToRefreshListView lvPhotos;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
+        
         fetchPopularPhotos();
+
+        // setup pull-to-refresh listener
+        lvPhotos = (PullToRefreshListView) findViewById(R.id.lvPhotos);
+        lvPhotos.setOnRefreshListener(new OnRefreshListener() {
+			
+			@Override
+			public void onRefresh() {
+                // Call listView.onRefreshComplete() once the network request has completed successfully.
+                fetchPopularPhotos();
+                lvPhotos.onRefreshComplete();
+			}
+		});
 	}
 
 	private void fetchPopularPhotos() {
@@ -34,7 +50,7 @@ public class PhotosActivity extends Activity {
 
 		// Create adapter; connect it to listview, so that it udpates view as data changes
         aphotos = new InstagramPhotosAdapter(this, photos);
-        ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
+        lvPhotos = (PullToRefreshListView) findViewById(R.id.lvPhotos);
         lvPhotos.setAdapter(aphotos);
 
 		// Set up popular photo endpoint
