@@ -2,7 +2,7 @@ package com.codepath.psshah.instagramviewer;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +29,6 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_photo, parent, false);
 		}
 		// Lookup fields in this view for population
-		TextView tvUser = (TextView) convertView.findViewById(R.id.tvUser);
 		TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
 		ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
 		TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
@@ -37,8 +36,8 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 		// Populate data into the view's fields
 		//tvUser.setTextColor(Color.BLUE);
 	    //tvUser.setTextSize(10);    
-		tvUser.setText(photo.username);
-		tvCaption.setText(photo.caption);
+		tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + photo.username
+                + "  " + "</b></font>" + "<font color=\"#000000\">" + photo.caption + "</font>"));
 		tvLikes.setText(photo.height + " likes");
 		
 		// XXX: why just set height?

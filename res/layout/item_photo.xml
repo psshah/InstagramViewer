@@ -17,12 +17,11 @@
         android:id="@+id/tvCaption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
         android:layout_below="@+id/tvLikes"
-        android:layout_toRightOf="@+id/tvUser"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="@string/caption_default_text" />
+        android:text="@string/caption_default_text"
+        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/ivLikes"
@@ -40,16 +39,5 @@
         android:layout_alignBottom="@+id/ivLikes"
         android:layout_toRightOf="@+id/ivLikes"
         android:text="@string/like_count_default" />
-
-    <TextView
-        android:id="@+id/tvUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-		android:textSize="12sp"
-		android:textColor="#00BFFF"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ivLikes"
-        android:maxLines="3"
-        android:text="@string/user_default_text" />
 
 </RelativeLayout>
