@@ -74,8 +74,9 @@ public class PhotosActivity extends Activity {
 						//Log.i("DEBUG", "this json=" + photoJson.toString());
 						InstagramPhoto photo = new InstagramPhoto();
 						
-						if(photoJson.getJSONObject("user") != null) {
+						if(photoJson.has("user") && photoJson.getJSONObject("user") != null) {
 							photo.username = photoJson.getJSONObject("user").getString("username");
+							photo.userProfileUrl = photoJson.getJSONObject("user").getString("profile_picture");
 						}
 						else {
 							photo.username = "anonymous";
@@ -88,13 +89,13 @@ public class PhotosActivity extends Activity {
 								Log.i("INFO", "missing caption");
 							}
 						}
-						if(photoJson.getJSONObject("images") != null) {							
+						if(photoJson.has("images") && photoJson.getJSONObject("images") != null) {							
 							if(photoJson.getJSONObject("images").getJSONObject("standard_resolution") != null) {
 								photo.url = photoJson.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
 								photo.height = photoJson.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
 							}
 						}
-						if(photoJson.getJSONObject("likes") != null) {
+						if(photoJson.has("likes") && photoJson.getJSONObject("likes") != null) {
 							photo.likesCount = photoJson.getJSONObject("likes").getInt("count");
 						}
 						if(photo != null) {

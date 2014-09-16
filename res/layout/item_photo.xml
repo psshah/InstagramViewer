@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>     
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
+    
     <ImageView
         android:id="@+id/ivPhoto"
         android:layout_width="wrap_content"
@@ -10,18 +10,8 @@
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+		android:layout_below="@+id/tvUserInfo"
         android:src="@drawable/ic_launcher" />
-
-    <TextView
-        android:id="@+id/tvCaption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvLikes"
-        android:ellipsize="end"
-        android:maxLines="3"
-        android:text="@string/caption_default_text"
-        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/ivLikes"
@@ -36,8 +26,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
+        android:paddingLeft="10dp"
         android:layout_alignBottom="@+id/ivLikes"
         android:layout_toRightOf="@+id/ivLikes"
         android:text="@string/like_count_default" />
 
+    <TextView
+        android:id="@+id/tvCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ivLikes"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="@string/caption_default_text"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#DCDCDC"
+        android:height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/civUserProfile"
+        android:text="@string/user_default_text" />
+
+    <!-- com.pkmmte.circularimageview.CircularImageView -->
+	<ImageView
+        android:id="@+id/civUserProfile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+		android:height="40dp"
+		android:background="#DCDCDC"
+	    android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_launcher" />
+         
 </RelativeLayout>

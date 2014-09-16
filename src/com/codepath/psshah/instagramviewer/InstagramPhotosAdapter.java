@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.pkmmte.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 
@@ -32,23 +33,33 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 		TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
 		ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
 		TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
+		TextView tvUserInfo = (TextView) convertView.findViewById(R.id.tvUserInfo);
+		//CircularImageView civUserProfile = (CircularImageView)convertView.findViewById(R.id.civUserProfile);
+		ImageView civUserProfile = (ImageView)convertView.findViewById(R.id.civUserProfile);
 
 		// Populate data into the view's fields
-		//tvUser.setTextColor(Color.BLUE);
-	    //tvUser.setTextSize(10);    
 		tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + photo.username
                 + "  " + "</b></font>" + "<font color=\"#000000\">" + photo.caption + "</font>"));
 		tvLikes.setText(photo.height + " likes");
-		
-		// XXX: why just set height?
-		ivPhoto.getLayoutParams().height = photo.height;
+		tvUserInfo.setText(Html.fromHtml("<font color=\"#206199\"><b>" + photo.username + " </b></font>"));
 		
 		// blank out image, to guard against old images from recycled views
 		ivPhoto.setImageResource(0);
+		// XXX: why just set height?
+		ivPhoto.getLayoutParams().height = photo.height;
+
 		// Ask image to be loaded into imageView based on photo url i.e.
-		// 	Async, send network request, download bytes, convert to bitmap, insert in imageview.
+		// 	Async, send network request, download bytes, convert to bitmap, insert in imageview.		
 		Picasso.with(getContext()).load(photo.url).into(ivPhoto);
 
+		// Load user profile image in circular view
+		//civUserProfile.setBorderColor(Color.GRAY);
+		//civUserProfile.setBorderWidth(10);
+		civUserProfile.setImageResource(0);
+		if(!photo.userProfileUrl.isEmpty()) {
+			Picasso.with(getContext()).load(photo.userProfileUrl).into(civUserProfile);
+		}
+		
 		// Return completed view to render
 		return convertView;
 	}

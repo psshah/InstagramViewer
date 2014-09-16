@@ -5,17 +5,20 @@ Time spent: 10 hours spent in total
 Completed user stories:
 
  Required: User can view most popular photos including username of who posted it and caption
- Optional: User can view the like count for each photograph. 
+ Optional: User can view the like count for each photograph.
  Optional: Added support for pull-to-refresh using third party library. 
+ Optional: Added user profile picture and name before the picture. 
 
 Notes:
 
-Spent some time changing the font size and font color for textview. 
+Spent some time changing the font size and font color for textview.
+Implemented CircularImageView for profile picture. Commented it out for now and replaced with ImageView since I am hitting an exception on bitmap refresh.
 
 Used following open source libraries.
 [android-async-http library](http://loopj.com/android-async-http/) to make network requests and parse response.
 [Picasso image library](http://square.github.io/picasso/) to download and render images.
 [PullToRefresh library](https://github.com/erikwt/PullToRefresh-ListView) for pull-to-refresh functionality. 
+[CircularImageView library](https://github.com/Pkmmte/CircularImageView) to display images in circular container. 
 
 Walkthrough of all user stories:
 
