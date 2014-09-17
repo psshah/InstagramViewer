@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pkmmte.circularimageview.CircularImageView;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 
@@ -34,8 +34,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 		ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
 		TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
 		TextView tvUserInfo = (TextView) convertView.findViewById(R.id.tvUserInfo);
-		//CircularImageView civUserProfile = (CircularImageView)convertView.findViewById(R.id.civUserProfile);
-		ImageView civUserProfile = (ImageView)convertView.findViewById(R.id.civUserProfile);
+		CircularImageView civUserProfile = (CircularImageView)convertView.findViewById(R.id.civUserProfile);
 
 		// Populate data into the view's fields
 		tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + photo.username
@@ -57,7 +56,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 		//civUserProfile.setBorderWidth(10);
 		civUserProfile.setImageResource(0);
 		if(!photo.userProfileUrl.isEmpty()) {
-			Picasso.with(getContext()).load(photo.userProfileUrl).into(civUserProfile);
+			Picasso.with(getContext()).load(photo.userProfileUrl).placeholder(R.drawable.ic_launcher).into(civUserProfile);
 		}
 		
 		// Return completed view to render

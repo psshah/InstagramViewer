@@ -53,8 +53,7 @@
         android:layout_toRightOf="@+id/civUserProfile"
         android:text="@string/user_default_text" />
 
-    <!-- com.pkmmte.circularimageview.CircularImageView -->
-	<ImageView
+	<com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/civUserProfile"
         android:layout_width="40dp"
         android:layout_height="40dp"
