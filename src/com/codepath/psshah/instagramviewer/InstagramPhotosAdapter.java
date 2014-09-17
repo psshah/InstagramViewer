@@ -39,7 +39,7 @@ public class InstagramPhotosAdapter extends ArrayAdapter<InstagramPhoto> {
 		// Populate data into the view's fields
 		tvCaption.setText(Html.fromHtml("<font color=\"#206199\"><b>" + photo.username
                 + "  " + "</b></font>" + "<font color=\"#000000\">" + photo.caption + "</font>"));
-		tvLikes.setText(photo.height + " likes");
+		tvLikes.setText(photo.likesCount + " likes");
 		tvUserInfo.setText(Html.fromHtml("<font color=\"#206199\"><b>" + photo.username + " </b></font>"));
 		
 		// blank out image, to guard against old images from recycled views

@@ -9,9 +9,9 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -30,12 +30,20 @@ public class PhotosActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
         
+        /* initialize necessary objects */
+		photos = new ArrayList<InstagramPhoto>();
+		// Create adapter; connect it to listview, so that it udpates view as data changes
+        aphotos = new InstagramPhotosAdapter(this, photos);
+
+        lvPhotos = (PullToRefreshListView) findViewById(R.id.lvPhotos);
+        lvPhotos.setAdapter(aphotos);
+
+
+        /* Fetch first set of photos */
         fetchPopularPhotos();
 
-        // setup pull-to-refresh listener
-        lvPhotos = (PullToRefreshListView) findViewById(R.id.lvPhotos);
-        lvPhotos.setOnRefreshListener(new OnRefreshListener() {
-			
+        /* setup pull-to-refresh listener */
+        lvPhotos.setOnRefreshListener(new OnRefreshListener() {			
 			@Override
 			public void onRefresh() {
                 // Call listView.onRefreshComplete() once the network request has completed successfully.
@@ -45,14 +53,8 @@ public class PhotosActivity extends Activity {
 		});
 	}
 
+	
 	private void fetchPopularPhotos() {
-		photos = new ArrayList<InstagramPhoto>();
-
-		// Create adapter; connect it to listview, so that it udpates view as data changes
-        aphotos = new InstagramPhotosAdapter(this, photos);
-        lvPhotos = (PullToRefreshListView) findViewById(R.id.lvPhotos);
-        lvPhotos.setAdapter(aphotos);
-
 		// Set up popular photo endpoint
         String url = "https://api.instagram.com/v1/media/popular?client_id=" + CLIENT_ID;
 
@@ -73,31 +75,7 @@ public class PhotosActivity extends Activity {
 						JSONObject photoJson = photosJson.getJSONObject(i);
 						//Log.i("DEBUG", "this json=" + photoJson.toString());
 						InstagramPhoto photo = new InstagramPhoto();
-						
-						if(photoJson.has("user") && photoJson.getJSONObject("user") != null) {
-							photo.username = photoJson.getJSONObject("user").getString("username");
-							photo.userProfileUrl = photoJson.getJSONObject("user").getString("profile_picture");
-						}
-						else {
-							photo.username = "anonymous";
-						}
-						if(photoJson.has("caption") && !photoJson.isNull("caption")) {
-							if(photoJson.getJSONObject("caption") != null) {
-								photo.caption = photoJson.getJSONObject("caption").getString("text");
-							}
-							else {
-								Log.i("INFO", "missing caption");
-							}
-						}
-						if(photoJson.has("images") && photoJson.getJSONObject("images") != null) {							
-							if(photoJson.getJSONObject("images").getJSONObject("standard_resolution") != null) {
-								photo.url = photoJson.getJSONObject("images").getJSONObject("standard_resolution").getString("url");
-								photo.height = photoJson.getJSONObject("images").getJSONObject("standard_resolution").getInt("height");
-							}
-						}
-						if(photoJson.has("likes") && photoJson.getJSONObject("likes") != null) {
-							photo.likesCount = photoJson.getJSONObject("likes").getInt("count");
-						}
+						photo.deserialize(photoJson);
 						if(photo != null) {
 							photos.add(photo);
 						}
@@ -112,6 +90,7 @@ public class PhotosActivity extends Activity {
         	public void onFailure(int statusCode, Header[] headers,
         			Throwable throwable, JSONObject errorResponse) {
         		super.onFailure(statusCode, headers, throwable, errorResponse);
+        		Toast.makeText(PhotosActivity.this, "Error fetching photos. Please close and restart the app", Toast.LENGTH_SHORT).show();
         	}
         });
     }
