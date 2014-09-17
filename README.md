@@ -12,13 +12,13 @@ Completed user stories:
 Notes:
 
 Spent some time changing the font size and font color for textview.
-Implemented CircularImageView for profile picture. Commented it out for now and replaced with ImageView since I am hitting an exception on bitmap refresh.
+Implemented CircularImageView for profile picture. 
 
 Used following open source libraries.
 [android-async-http library](http://loopj.com/android-async-http/) to make network requests and parse response.
 [Picasso image library](http://square.github.io/picasso/) to download and render images.
 [PullToRefresh library](https://github.com/erikwt/PullToRefresh-ListView) for pull-to-refresh functionality. 
-[CircularImageView library](https://github.com/Pkmmte/CircularImageView) to display images in circular container. 
+[CircularImageView library](https://github.com/lopspower/CircularImageView) to display images in circular container. 
 
 Walkthrough of all user stories:
 
